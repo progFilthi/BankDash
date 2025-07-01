@@ -89,14 +89,14 @@ export default function Sidebar() {
                 alt="avator"
                 width={45}
                 height={45}
-                className="cursor-pointer"
+                className="cursor-pointer w-10"
               />
               <div className="flex flex-col items-start ">
                 <h3 className="text-sm font-semibold">Emmanuel Francis</h3>
                 <p className="text-xs opacity-60">gamerfilthi@gmail.com</p>
               </div>
             </div>
-            <LogOutIcon className="cursor-pointer" />
+            <LogOutIcon className="cursor-pointer" height={20} />
           </div>
         </div>
       </div>

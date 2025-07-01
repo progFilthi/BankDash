@@ -1,3 +1,4 @@
+import { BellIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -14,19 +15,13 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="flex items-center gap-[24px]">
-            <Image
-              src={"/bell-icon.svg"}
-              alt="avator"
-              width={19}
-              height={23}
-              className="cursor-pointer"
-            />
+            <BellIcon height={20} />
             <Image
               src={"/avator.svg"}
               alt="avator"
               width={45}
               height={45}
-              className="cursor-pointer"
+              className="cursor-pointer w-8"
             />
           </div>
         </div>
