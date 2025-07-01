@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Layout() {
-  return (
-    <div>
-      <h1>Sidebar Layout</h1>
-    </div>
-  );
+interface ChildrenProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: ChildrenProps) {
+  return <div>{children}</div>;
 }
