@@ -12,9 +12,7 @@ export default function Container({ children }: ContainerProps) {
       <Sidebar />
       <div className="flex flex-col flex-1">
         <Navbar />
-        <main className="flex items-center justify-center min-h-screen bg-[#EDEFED]">
-          {children}
-        </main>
+        <main className="bg-[#EDEFED] h-full p-8">{children}</main>
       </div>
     </div>
   );
