@@ -26,29 +26,29 @@ const transactions: Transaction[] = [
 
 export default function TransactionsCard() {
   return (
-    <div className="bg-[#2A352A] text-[#EDEFED] p-6 rounded-2xl shadow-sm">
-      <h3 className="text-lg font-medium mb-4">Transactions</h3>
+    <div className="bg-[#2A352A] text-[#EDEFED] p-4 sm:p-6 rounded-2xl shadow-sm">
+      <h3 className="text-base sm:text-lg font-medium mb-4">Transactions</h3>
 
-      <ul className="space-y-3">
+      <div className="space-y-3 overflow-x-auto">
         {transactions.map((tx) => (
-          <li
+          <div
             key={tx.id}
-            className="flex justify-between items-center border-b border-[#EDEFED]/10 pb-2"
+            className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-[#EDEFED]/10 pb-3 gap-2 sm:gap-0"
           >
-            <div>
-              <p className="font-medium">{tx.description}</p>
-              <p className="text-sm text-[#EDEFED]/70">{tx.date}</p>
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-sm sm:text-base truncate">{tx.description}</p>
+              <p className="text-xs sm:text-sm text-[#EDEFED]/70">{tx.date}</p>
             </div>
             <p
-              className={`font-semibold ${
+              className={`font-semibold text-sm sm:text-base flex-shrink-0 ${
                 tx.amount.startsWith("-") ? "text-red-400" : "text-green-400"
               }`}
             >
               {tx.amount}
             </p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
