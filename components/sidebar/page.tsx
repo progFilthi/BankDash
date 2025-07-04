@@ -5,11 +5,13 @@ import {
   CircleUserRoundIcon,
   LandmarkIcon,
   LogOutIcon,
+  MenuIcon,
+  XIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const sidebarLinks = [
   {
@@ -36,18 +38,49 @@ const sidebarLinks = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <nav className="bg-[#4D604C] flex flex-col space-y-8 w-[270px] h-screen text-[#EDEFED]">
-      {/** Logo */}
-      <Link href={"/"}>
-        <div className="flex items-center pt-4 px-4 gap-1">
-          <Image
-            src="/logo.svg"
-            alt="BankDash Logo"
-            width={48}
-            height={48}
-            className="w-8"
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={toggleMobileMenu}
+        className="lg:hidden fixed top-4 left-4 z-50 bg-[#4D604C] text-[#EDEFED] p-2 rounded-md hover:cursor-pointer transition-colors duration-300"
+      >
+        {isMobileMenuOpen ? <XIcon size={20} /> : <MenuIcon size={20} />}
+      </button>
+
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black opacity-80  z-30"
+          onClick={toggleMobileMenu}
+        />
+      )}
+
+      {/* Sidebar */}
+      <nav
+        className={`bg-[#4D604C] flex flex-col space-y-8 text-[#EDEFED] h-screen transition-transform duration-300 z-40
+        ${
+          isMobileMenuOpen
+            ? "fixed left-0 top-0 w-[270px] transform translate-x-0"
+            : "fixed left-0 top-0 w-[270px] transform -translate-x-full lg:transform-none lg:relative lg:translate-x-0"
+        }
+        lg:w-[270px]`}
+      >
+        {/** Logo */}
+        <Link href={"/"}>
+          <div className="flex items-center pt-4 px-4 gap-1">
+            <Image
+              src="/logo.svg"
+              alt="BankDash Logo"
+              width={48}
+              height={48}
+              className="w-8"
           />
           <h1 className="text-[24px] font-semibold">BankDash</h1>
         </div>
@@ -66,6 +99,7 @@ export default function Sidebar() {
                 className={`flex items-center py-4 px-8 space-x-2 transition-all duration-300 ${
                   isActive ? "bg-[#374436] font-semibold" : "hover:bg-[#374436]"
                 }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Icon height={20} />
                 <span>{link.label}</span>
@@ -77,12 +111,6 @@ export default function Sidebar() {
         <div className="space-y-4">
           <hr className="opacity-60" />
           <div className="flex items-center justify-between text-end mb-16 mx-4">
-            {/* <button
-            type="button"
-            className="bg-[#374436] p-[10px] rounded-[8px] cursor-pointer "
-          >
-            Logout
-          </button> */}
             <div className="flex items-center space-x-2">
               <Image
                 src={"/avator.svg"}
@@ -101,5 +129,6 @@ export default function Sidebar() {
         </div>
       </div>
     </nav>
+    </>
   );
 }
